@@ -1,0 +1,14 @@
+---
+version: "3.8"
+services:
+  jaeger-all-in-one:
+    image: jaegertracing/all-in-one:1.30
+    ports:
+      - "16686:16686"
+  jaeger-agent:
+    image: jaegertracing/jaeger-agent:1.30
+    command:
+      - --reporter.grpc.host-port=jaeger-all-in-one:14250
+      - --reporter.type=grpc
+    ports:
+      - "6831:6831"
