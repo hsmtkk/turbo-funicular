@@ -21,7 +21,7 @@ func main() {
 		log.Fatalf("failed to get exporter; %s", err)
 	}
 	traceProvider := trace.NewTracerProvider(
-		trace.WithBatcher(exporter),
+		trace.WithSyncer(exporter),
 		trace.WithResource(resource.NewWithAttributes(semconv.SchemaURL,
 			semconv.ServiceNameKey.String("turbo-funicular"),
 			semconv.ServiceVersionKey.String("1.0"))),
